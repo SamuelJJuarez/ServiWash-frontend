@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 text-base antialiased;
+}
+
+/* Foco de teclado siempre visible. */
+:focus-visible {
+  outline: 3px solid #0284c7;
+  outline-offset: 2px;
+}
+
+/* Impresión del comprobante como ticket térmico de 80 mm: solo #ticket-print (portal de TicketReceiptModal). */
+@media print {
+  @page {
+    size: 80mm auto;
+    margin: 3mm;
+  }
+  body {
+    background: #fff;
+  }
+  body > *:not(#ticket-print) {
+    display: none !important;
+  }
+  #ticket-print {
+    width: 74mm;
+  }
+}
